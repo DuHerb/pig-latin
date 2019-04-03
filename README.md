@@ -15,13 +15,14 @@ _Take user input and convert it to pig latin_
 
 ###Specifications
 
-| Behavior | Input | Output |
+| Behavior | Input | Expected Output |
 | --- | --- | --- |
-| Return false when not a leap year | 1993 | false |
-| Return true if divisible by 4 | 2004 | true |
-| Return false if divisible by 100 | 1900 | false |
-| Return true if divisible by 400 | 2000 | true |
-
+| does nothing to non-alphabetical characters | 3 | 3 |
+| add "way" to single-letter words beginning with a vowel | i | iay |
+| for words beginning with a vowel, add "way" to the end | apple | appleWay |
+| for words beginning with one or more consonants, move all of the first consecutive consonants to the end, and add "ay". | charge | argeChay |
+| If the first consonants include "qu", move the "u" along with the "q". Don't forget about words like "squeal" where "qu" doesn't come first! | quiet | ietQuay |
+| For words beginning with "y", treat "y" as a consonant. | yes | esYay |
 
 
 
