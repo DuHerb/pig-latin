@@ -1,6 +1,6 @@
 $(document).ready(function(){
   var vowels = ['a','e','i','o','u','y','A','E','I','O','U','Y'];
-  var testInput = "";
+
 
   //isSingleChar() checks that a string is one character long, and if it's a vowel, returns character + ay, else returns original input
   function isSingleChar(word){
@@ -22,7 +22,12 @@ $(document).ready(function(){
     };
     // for words that begin with one or more consonants, return a string that pushes leading consonates + ay to the end of the word.
     function leadingConsonats(word){
-
+      var pigWord = "";
+      var count = 0;
+      //cuts out leading consonants and add "ay"
+      var vowelSlice = word.slice(index);
+      var consonantSlice = word.slice(-word.length,-(word.length - index));
+      return vowelSlice + conSlice + "ay";
     };
     //form submit
   $('#userInputSubmit').click(function(){
@@ -30,6 +35,12 @@ $(document).ready(function(){
 
     $('output').append("<br>" + "isSingleChar(): " + isSingleChar(userInput));
     $('output').append("<br>" +  "isFirstLetterVowel(): " + isFirstLetterVowel(userInput));
+
+      var testInput = "struggle";
+    var index = testInput.indexOf("u");
+    var conSlice = testInput.slice(-testInput.length,-(testInput.length - index)) + "ay";
+    var vowelSlice = testInput.slice(index);
+    console.log(index, testInput, conSlice, vowelSlice, vowelSlice + conSlice);
   })
 //end of $document.ready()
 });
