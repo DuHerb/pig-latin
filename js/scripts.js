@@ -19,8 +19,8 @@ $(document).ready(function(){
       return word;
     };
   };
-  // for words that begin with one or more consonants, return a string that pushes leading consonates + ay to the end of the word.
-  function leadingConsonats(word){
+  // findVowel() finds the index of the first vowel in a word
+  function findVowel(word){
     var index = 0;
     outerBlock:
       for (var i = 0; i < word.length; i++){
@@ -31,6 +31,11 @@ $(document).ready(function(){
             break outerBlock;
           }
         }
+        return index;
+  }
+  // for words that begin with one or more consonants, return a string that pushes leading consonates + ay to the end of the word.
+  function leadingConsonats(word){
+    var index = findVowel(word);
   //check out word.substring()
     var vowelSlice = word.slice(index);
     var conSlice = word.slice(-word.length,-(word.length - index)) + "ay";
@@ -40,11 +45,12 @@ $(document).ready(function(){
   $('#userInputSubmit').click(function(){
     var userInput = $('.userInput').val();
 
-    $('output').append("<br>" + "isSingleChar(): " + isSingleChar(userInput));
-    $('output').append("<br>" +  "isFirstLetterVowel(): " + isFirstLetterVowel(userInput));
+    // $('output').append("<br>" + "isSingleChar(): " + isSingleChar(userInput));
+    // $('output').append("<br>" +  "isFirstLetterVowel(): " + isFirstLetterVowel(userInput));
+    // $('output').append("<br>" +  "leadingConsonats(): " + leadingConsonats(userInput));
     $('output').append("<br>" +  "leadingConsonats(): " + leadingConsonats(userInput));
+    $('output').append("<br>" +  "findVowel(): " + findVowel(userInput));
 
-    
   })
 //end of $document.ready()
 });
