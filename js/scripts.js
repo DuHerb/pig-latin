@@ -22,12 +22,20 @@ $(document).ready(function(){
     };
     // for words that begin with one or more consonants, return a string that pushes leading consonates + ay to the end of the word.
     function leadingConsonats(word){
-      var pigWord = "";
-      var count = 0;
-      //cuts out leading consonants and add "ay"
+      var index = 0;
+      outerBlock:
+        for (var i = 0; i < word.length; i++){
+          innerBlock:
+          for (var j = 0; j < vowels.length; j++)
+            if(word.charAt(i)===vowels[j]){
+              index = i;
+              break outerBlock;
+            }
+          }
+          //check out word.substring()
       var vowelSlice = word.slice(index);
-      var consonantSlice = word.slice(-word.length,-(word.length - index));
-      return vowelSlice + conSlice + "ay";
+      var conSlice = word.slice(-word.length,-(word.length - index)) + "ay";
+      return vowelSlice + conSlice;
     };
     //form submit
   $('#userInputSubmit').click(function(){
@@ -35,12 +43,28 @@ $(document).ready(function(){
 
     $('output').append("<br>" + "isSingleChar(): " + isSingleChar(userInput));
     $('output').append("<br>" +  "isFirstLetterVowel(): " + isFirstLetterVowel(userInput));
+    $('output').append("<br>" +  "leadingConsonats(): " + leadingConsonats(userInput));
 
-      var testInput = "struggle";
-    var index = testInput.indexOf("u");
-    var conSlice = testInput.slice(-testInput.length,-(testInput.length - index)) + "ay";
-    var vowelSlice = testInput.slice(index);
-    console.log(index, testInput, conSlice, vowelSlice, vowelSlice + conSlice);
+    // var index = testInput.indexOf("a");
+    // var conSlice = testInput.slice(-testInput.length,-(testInput.length - index));
+    // var vowelSlice = testInput.slice(index);
+    // console.log(testInput, index, conSlice, vowelSlice, vowelSlice + conSlice + "ay");
+
+    //searching for first vowel
+    // var index = "";
+    // // var breakOut = "false";
+    // outerBlock:
+    //   for (var i = 0; i < testInput.length; i++){
+    //     innerBlock:
+    //     for (var j = 0; j < vowels.length; j++)
+    //       if(testInput.charAt(i)===vowels[j]){
+    //         index = i;
+    //         break outerBlock;
+    //       }
+    //
+    //     }
+    // var testInput = "happy";
+    // console.log(leadingConsonats(testInput));
   })
 //end of $document.ready()
 });
